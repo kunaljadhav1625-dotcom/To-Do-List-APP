@@ -1,5 +1,6 @@
 package com.example.todolist;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,16 +37,32 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.textTask.setText(task.getTitle());
+        
+        // Strikethrough logic
+        updateTextDecoration(holder.textTask, task.isCompleted());
+        
+        holder.checkCompleted.setOnCheckedChangeListener(null); // Clear listener to avoid recursive calls
         holder.checkCompleted.setChecked(task.isCompleted());
 
         holder.checkCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> {
             task.setCompleted(isChecked);
+            updateTextDecoration(holder.textTask, isChecked);
             listener.onTaskChanged();
         });
 
         holder.btnDelete.setOnClickListener(v -> {
             listener.onTaskDeleted(holder.getAdapterPosition());
         });
+    }
+
+    private void updateTextDecoration(TextView textView, boolean isCompleted) {
+        if (isCompleted) {
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            textView.setAlpha(0.5f);
+        } else {
+            textView.setPaintFlags(textView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            textView.setAlpha(1.0f);
+        }
     }
 
     @Override
