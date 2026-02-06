@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Samsung One UI inspired colors -->
+    <color name="colorPrimary">#0066FF</color>
+    <color name="colorPrimaryDark">#0052CC</color>
+    <color name="colorAccent">#0066FF</color>
+
+    <!-- Task priority colors -->
+    <color name="priority_high">#FF3B30</color>
+    <color name="priority_medium">#FF9500</color>
+    <color name="priority_low">#34C759</color>
+
+    <!-- Background colors -->
+    <color name="background_light">#F2F2F7</color>
+    <color name="background_card">#FFFFFF</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#8E8E93</color>
+    <color name="text_disabled">#C7C7CC</color>
+</resources>
